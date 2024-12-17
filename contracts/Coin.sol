@@ -6,20 +6,20 @@ import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 
-contract LuigiCoin is
+contract Coin is
     ERC20Upgradeable,
     OwnableUpgradeable,
     ReentrancyGuardUpgradeable,
     PausableUpgradeable
 {
-    uint256 public constant INITIAL_SUPPLY = 1000000 * 10 ** 18;
+    uint256 public constant INITIAL_SUPPLY = 1000 * 10 ** 18;
     mapping(address => uint256) public etherDeposits;
     uint256 public constant MAX_SUPPLY = 2000000 * 10 ** 18; // Maximum supply limit
     event TokensMinted(address indexed to, uint256 amount);
     event EtherWithdrawn(address indexed by, uint256 amount);
 
     function initialize(address ownerAddress) public initializer {
-        __ERC20_init("Coin", "UHC");
+        __ERC20_init({COIN_NAME}, {COIN_CODE});
         __Ownable_init(ownerAddress);
         __ReentrancyGuard_init();
         __Pausable_init();
